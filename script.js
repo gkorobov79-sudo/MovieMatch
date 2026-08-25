@@ -91,7 +91,7 @@ function setupMovieSearch(inputId, resultsId) {
         try {
 
             const response = await fetch(
-                `http://127.0.0.1:8000/search?movie=${encodeURIComponent(query)}`,
+                `"https://moviematch-8yak.onrender.com/search?movie=${encodeURIComponent(query)}`,
                 {
                     signal: controller.signal
                 }
@@ -331,7 +331,7 @@ recommendButton.addEventListener(
             // ===============================
 
             const response = await fetch(
-                "http://127.0.0.1:8000/recommend",
+                "https://moviematch-8yak.onrender.com/recommend",
                 {
                     method: "POST",
 

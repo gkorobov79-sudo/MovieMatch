@@ -132,7 +132,7 @@ function setupMovieSearch(inputId, resultsId) {
                 movieElement.className = "search-result";
 
                 const poster = movie.poster_path
-                    ? `http://127.0.0.1:8000/poster?path=${encodeURIComponent(movie.poster_path)}`
+                    ? `http://moviematch-8yak.onrender.com/poster?path=${encodeURIComponent(movie.poster_path)}`
                     : "";
 
                 movieElement.innerHTML = `
@@ -411,7 +411,7 @@ recommendButton.addEventListener(
 
                     const poster =
                         movie.poster_path
-                            ? `http://127.0.0.1:8000/poster?path=${encodeURIComponent(movie.poster_path)}`
+                            ? `http://moviematch-8yak.onrender.com/poster?path=${encodeURIComponent(movie.poster_path)}`
                             : "";
 
 
@@ -524,7 +524,7 @@ function openMovieModal(movie) {
 
     const poster =
         movie.poster_path
-            ? `http://127.0.0.1:8000/poster?path=${encodeURIComponent(movie.poster_path)}`
+            ? `http://moviematch-8yak.onrender.com/poster?path=${encodeURIComponent(movie.poster_path)}`
             : "";
 
     movieModalBody.innerHTML = `
@@ -658,7 +658,7 @@ function showSelectedMovie(input, movie) {
     input.style.display = "none";
 
     const poster = movie.poster_path
-        ? `http://127.0.0.1:8000/poster?path=${encodeURIComponent(movie.poster_path)}`
+        ? `http://moviematch-8yak.onrender.com/poster?path=${encodeURIComponent(movie.poster_path)}`
         : "";
 
     const selectedCard =

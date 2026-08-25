@@ -91,7 +91,7 @@ function setupMovieSearch(inputId, resultsId) {
         try {
 
             const response = await fetch(
-                `"https://moviematch-8yak.onrender.com/search?movie=${encodeURIComponent(query)}`,
+                `https://moviematch-8yak.onrender.com/search?movie=${encodeURIComponent(query)}`,
                 {
                     signal: controller.signal
                 }

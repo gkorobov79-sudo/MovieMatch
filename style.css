@@ -1,0 +1,1040 @@
+/* ==============================
+   MOVIEMATCH — NEW DESIGN
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            #292052 0%,
+            #11101b 45%,
+            #08080d 100%
+        );
+
+    color: #ffffff;
+}
+
+
+/* ==============================
+   ОСНОВНОЕ ПРИЛОЖЕНИЕ
+   ============================== */
+
+.app {
+    width: min(1150px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 55px 0 80px;
+}
+
+
+/* ==============================
+   HEADER
+   ============================== */
+
+.hero {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+/* ЛОГОТИП */
+
+.logo {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 28px;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.logo-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7657ff,
+            #a16cff
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(124, 92, 255, 0.35);
+
+    font-size: 20px;
+}
+
+
+/* ЗАГОЛОВОК */
+
+.hero h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 6vw, 68px);
+
+    line-height: 1.02;
+
+    letter-spacing: -2.5px;
+
+    font-weight: 850;
+}
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #9b83ff,
+            #d0c5ff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ПОДЗАГОЛОВОК */
+
+.hero p {
+    max-width: 570px;
+
+    margin: 22px auto 0;
+
+    color: #9694a5;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   ВЫБОР ФИЛЬМОВ
+   ============================== */
+
+.movie-picker {
+    padding: 30px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 24px;
+
+    background:
+        rgba(20, 19, 30, 0.78);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* HEADER ВЫБОРА */
+
+.movie-picker-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.movie-picker-header h2 {
+    margin: 0 0 5px;
+
+    font-size: 23px;
+}
+
+.movie-picker-header p {
+    margin: 0;
+
+    color: #777687;
+
+    font-size: 14px;
+}
+
+
+/* СЧЁТЧИК */
+
+.selected-counter {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(124, 92, 255, 0.12);
+
+    border: 1px solid
+        rgba(139, 114, 255, 0.2);
+
+    color: #b8a7ff;
+
+    font-weight: 800;
+
+    font-size: 16px;
+}
+
+
+/* ==============================
+   ТРИ КАРТОЧКИ
+   ============================== */
+
+.movie-picker-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    align-items: start;
+}
+
+.movie-input-card {
+    position: relative;
+
+    min-height: 125px;
+
+    padding: 24px 20px 18px;
+
+    border-radius: 18px;
+
+    border: 1px solid #2b2a38;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1a25,
+            #15141d
+        );
+
+    transition:
+        border-color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.movie-input-card:focus-within {
+    border-color: #7058cf;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(90, 70, 180, 0.15);
+}
+
+
+/* НОМЕР */
+
+.movie-number {
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    color: #555363;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* INPUT */
+
+.movie-input-card input {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.movie-input-card input::placeholder {
+    color: #777585;
+}
+
+.movie-input-card input:focus {
+    box-shadow: none;
+
+    transform: none;
+}
+
+
+/* ==============================
+   ПОИСК
+   ============================== */
+
+.search-results {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    border: 1px solid #333142;
+
+    background: #1b1a25;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.5);
+}
+
+.search-result {
+    padding: 13px 15px;
+
+    border-bottom: 1px solid #292835;
+
+    background: #1b1a25;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s,
+        padding-left 0.15s;
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.search-result:hover {
+    background: #27243a;
+
+    padding-left: 19px;
+}
+
+.search-result strong {
+    color: white;
+
+    font-size: 15px;
+}
+
+.search-result small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #858393;
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   КНОПКА
+   ============================== */
+
+.recommend-wrapper {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 28px;
+}
+
+#recommendButton {
+    margin: 0;
+
+    padding: 15px 28px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7657ff,
+            #9b6cff
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px
+        rgba(124, 92, 255, 0.28);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        filter 0.2s;
+}
+
+#recommendButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 35px
+        rgba(124, 92, 255, 0.38);
+
+    filter: brightness(1.08);
+}
+
+#recommendButton:disabled {
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* ==============================
+   РЕЗУЛЬТАТЫ
+   ============================== */
+
+#results {
+    margin-top: 55px;
+}
+
+#results h2 {
+    margin: 0 0 25px;
+
+    font-size: 30px;
+
+    letter-spacing: -0.7px;
+}
+
+
+/* ==============================
+   СЕТКА ФИЛЬМОВ
+   ============================== */
+
+.movies-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* ==============================
+   КАРТОЧКА ФИЛЬМА
+   ============================== */
+
+.movie-card {
+    overflow: hidden;
+
+    border: 1px solid #292835;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1a24,
+            #15141c
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #6250a2;
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+/* ПОСТЕР */
+
+.movie-card img,
+.no-poster {
+    display: block;
+
+    width: 100%;
+    height: 280px;
+
+    object-fit: contain;
+
+    background: #0e0e14;
+}
+
+.no-poster {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+
+    color: #555363;
+}
+
+
+/* ИНФОРМАЦИЯ */
+
+.movie-info {
+    padding: 14px;
+}
+
+.movie-info h3 {
+    margin: 0 0 9px;
+
+    color: white;
+
+    font-size: 16px;
+
+    line-height: 1.3;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.movie-rating {
+    display: inline-block;
+
+    margin-bottom: 5px;
+
+    color: #ffd45c;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.movie-year {
+    color: #858393;
+
+    font-size: 13px;
+}
+
+
+/* ==============================
+   ОКНО ФИЛЬМА
+   ============================== */
+
+.movie-modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.7);
+
+    backdrop-filter: blur(7px);
+}
+
+.movie-modal.active {
+    display: flex;
+}
+
+.movie-modal-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 720px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border: 1px solid #373445;
+
+    border-radius: 22px;
+
+    background:
+        #181720;
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, 0.65);
+}
+
+
+/* КРЕСТИК */
+
+.movie-modal-close {
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 27px;
+
+    line-height: 38px;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+.movie-modal-close:hover {
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* СОДЕРЖИМОЕ */
+
+.movie-modal-body {
+    display: flex;
+
+    gap: 25px;
+}
+
+.movie-modal-poster {
+    width: 180px;
+    height: 270px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    border-radius: 13px;
+
+    background: #0e0e14;
+}
+
+.movie-modal-info {
+    flex: 1;
+}
+
+.movie-modal-info h2 {
+    margin: 0 0 12px;
+
+    padding-right: 35px;
+
+    font-size: 28px;
+}
+
+.movie-modal-rating {
+    margin-bottom: 8px;
+
+    color: #ffd45c;
+
+    font-weight: 700;
+}
+
+.movie-modal-year {
+    margin-bottom: 20px;
+
+    color: #858393;
+}
+
+.movie-modal-overview {
+    color: #c4c3ce;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+}
+
+
+/* ==============================
+   АДАПТИВНОСТЬ
+   ============================== */
+
+@media (max-width: 950px) {
+
+    .movies-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .movie-picker-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .app {
+        width: min(100% - 24px, 600px);
+
+        padding-top: 35px;
+    }
+
+    .hero {
+        margin-bottom: 35px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .movie-picker {
+        padding: 20px;
+    }
+
+    .movie-picker-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .movies-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .movie-card img,
+    .no-poster {
+        height: 240px;
+    }
+
+    .movie-modal {
+        padding: 12px;
+    }
+
+    .movie-modal-content {
+        padding: 22px;
+
+        max-height: 90vh;
+    }
+
+    .movie-modal-body {
+        flex-direction: column;
+    }
+
+    .movie-modal-poster {
+        width: 150px;
+        height: 225px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .movie-picker-header {
+        align-items: flex-start;
+    }
+
+    .movies-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .movie-card img,
+    .no-poster {
+        height: 210px;
+    }
+}
+/* ==============================
+   ПОСТЕРЫ В ПОИСКЕ
+   ============================== */
+
+.search-result {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 9px 12px;
+}
+
+.search-result img,
+.search-no-poster {
+    width: 42px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    background: #101017;
+}
+
+.search-no-poster {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    color: #555363;
+}
+
+.search-result-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 0;
+}
+
+.search-result-info strong {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.search-result-info small {
+    margin: 0;
+}
+
+/* ==============================
+   ВЫБРАННЫЙ ФИЛЬМ
+   ============================== */
+
+.movie-input-card.movie-selected {
+    padding: 0;
+
+    overflow: hidden;
+
+    min-height: 270px;
+}
+
+.selected-movie-card {
+    position: relative;
+
+    height: 100%;
+    min-height: 270px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    background: #101017;
+}
+
+.selected-movie-poster {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: #101017;
+}
+
+.selected-movie-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(8, 8, 13, 0.98),
+            rgba(8, 8, 13, 0.25),
+            rgba(8, 8, 13, 0.05)
+        );
+}
+
+.selected-movie-info {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 20px;
+}
+
+.selected-movie-info h3 {
+    margin: 0 0 6px;
+
+    color: white;
+
+    font-size: 19px;
+
+    line-height: 1.2;
+}
+
+.selected-movie-info span {
+    color: #aaa8b8;
+
+    font-size: 14px;
+}
+
+.selected-movie-number {
+    position: absolute;
+
+    right: 20px;
+    bottom: 20px;
+
+    color: #666474;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.change-movie-button {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    z-index: 5;
+
+    width: 34px;
+    height: 34px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.5);
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    backdrop-filter: blur(5px);
+}
+
+.change-movie-button:hover {
+    background:
+        rgba(0, 0, 0, 0.75);
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+.selected-movie-no-poster {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+
+    color: #555363;
+}

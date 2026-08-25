@@ -1,28 +1,195 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MovieMatch</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>🎬 MovieMatch</h1>
+    <main class="app">
 
-    <p>Выбери 3 фильма, которые тебе нравятся</p>
+        <!-- =========================
+             HEADER
+             ========================= -->
 
-    <input type="text" id="movie1" placeholder="Первый фильм">
-    <input type="text" id="movie2" placeholder="Второй фильм">
-    <input type="text" id="movie3" placeholder="Третий фильм">
+        <header class="hero">
 
-    <button id="recommendButton">
-        Получить рекомендации
-    </button>
+            <div class="logo">
+                <span class="logo-icon">🎬</span>
+                <span>MovieMatch</span>
+            </div>
 
-    <div id="results"></div>
+            <h1>
+                Найди фильм<br>
+                <span>по своему вкусу</span>
+            </h1>
+
+            <p>
+                Выбери три фильма, которые тебе нравятся,
+                и MovieMatch подберёт похожие.
+            </p>
+
+        </header>
+
+
+        <!-- =========================
+             ВЫБОР ФИЛЬМОВ
+             ========================= -->
+
+        <section class="movie-picker">
+
+            <div class="movie-picker-header">
+
+                <div>
+                    <h2>Твои фильмы</h2>
+
+                    <p>
+                        Выбери 3 фильма для поиска рекомендаций
+                    </p>
+                </div>
+
+                <div class="selected-counter">
+                    <span id="selectedCount">0</span>/3
+                </div>
+
+            </div>
+
+
+            <div class="movie-picker-grid">
+
+
+                <!-- ФИЛЬМ 1 -->
+
+                <div class="movie-input-card">
+
+                    <div class="movie-number">
+                        01
+                    </div>
+
+                    <input
+                        type="text"
+                        id="movie1"
+                        placeholder="Первый фильм"
+                        autocomplete="off"
+                    >
+
+                    <div
+                        id="searchResults1"
+                        class="search-results"
+                    ></div>
+
+                </div>
+
+
+                <!-- ФИЛЬМ 2 -->
+
+                <div class="movie-input-card">
+
+                    <div class="movie-number">
+                        02
+                    </div>
+
+                    <input
+                        type="text"
+                        id="movie2"
+                        placeholder="Второй фильм"
+                        autocomplete="off"
+                    >
+
+                    <div
+                        id="searchResults2"
+                        class="search-results"
+                    ></div>
+
+                </div>
+
+
+                <!-- ФИЛЬМ 3 -->
+
+                <div class="movie-input-card">
+
+                    <div class="movie-number">
+                        03
+                    </div>
+
+                    <input
+                        type="text"
+                        id="movie3"
+                        placeholder="Третий фильм"
+                        autocomplete="off"
+                    >
+
+                    <div
+                        id="searchResults3"
+                        class="search-results"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 КНОПКА
+                 ========================= -->
+
+            <div class="recommend-wrapper">
+
+                <button
+                    id="recommendButton"
+                    style="display: none;"
+                >
+                    🎬 Получить рекомендации
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             РЕЗУЛЬТАТЫ
+             ========================= -->
+
+        <section id="results"></section>
+
+
+    </main>
+
+
+    <!-- =========================
+         ОКНО ФИЛЬМА
+         ========================= -->
+
+    <div
+        id="movieModal"
+        class="movie-modal"
+    >
+
+        <div class="movie-modal-content">
+
+            <button
+                id="closeMovieModal"
+                class="movie-modal-close"
+            >
+                ×
+            </button>
+
+            <div id="movieModalBody"></div>
+
+        </div>
+
+    </div>
+
 
     <script src="script.js"></script>
+
 </body>
+
 </html>
